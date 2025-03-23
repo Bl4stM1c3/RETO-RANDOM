@@ -1,0 +1,32 @@
+#Posible solucion al ejericio 52 de https://retosdeprogramacion.com/ejercicios/
+# Crea tu propio enunciado para que forme parte de los retos de 2023.
+# * - Ten en cuenta que su dificultad debe ser asumible por la comunidad y seguir
+# * un estilosemejante a los que hemos realizado durante el año.
+# * - Si quieres también puedes proponer tu propia solución al reto
+# *   (en el lenguaje que quieras).
+# */
+#      ENUNCIADO:
+# El cifrado por desplazamiento inverso es un método de encriptación 
+#en el que cada letra de una palabra es desplazada un número específico de posiciones en el abecedario, 
+#pero en dirección inversa (hacia atrás en lugar de hacia adelante).
+#Requisitos:
+#Crea una función que reciba un texto y un número entero positivo como clave de desplazamiento. 
+#Cada letra del texto debe ser desplazada hacia atrás en el abecedario según la clave indicada. 
+#El cifrado solo debe afectar a las letras del alfabeto, manteniendo los espacios y otros caracteres especiales sin cambios. 
+#El resultado debe ser devuelto en minúsculas.
+
+from unidecode import unidecode
+
+def cifrado(texto, valor):
+  texto = unidecode(texto.lower())
+  texto_cifrado = ""
+
+  #Validamos que el valor introducido sea un numero entero
+  if isinstance(valor, int):
+    for c in texto:
+      if c.isalpha():
+        nueva_letra = chr(((ord(c) - ord("a") - valor) % 26) + ord("a")) #Nos desplazamos numericamente a traves del codigo ASCII correspondiente a las letras minusculas del abecedario
+        texto_cifrado += nueva_letra
+      else:
+        texto_cifrado += c
+  return "Debe introducir un valor numerico
